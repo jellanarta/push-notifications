@@ -1,0 +1,34 @@
+'use client'
+import { useEffect, useState } from 'react'
+
+export function InstallPrompt() {
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null)
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault()
+      setDeferredPrompt(e)
+      setVisible(true)
+    })
+  }, [])
+
+  const install = async () => {
+    if (!deferredPrompt) return
+    deferredPrompt.prompt()
+    const result = await deferredPrompt.userChoice
+    if (result.outcome === 'accepted') {
+      console.log('User accepted install')
+      setVisible(false)
+    }
+  }
+
+  if (!visible) return null
+
+  return (
+    <div style={{ padding: 10, background: '#eee' }}>
+      <p>Install aplikasi ini ke perangkat Anda!</p>
+      <button onClick={install}>Install</button>
+    </div>
+  )
+}
