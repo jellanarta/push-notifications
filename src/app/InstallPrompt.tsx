@@ -26,7 +26,7 @@ export function InstallPrompt() {
   if (!visible) return null
 
   return (
-    <div style={{ padding: 10, background: '#eee' }}>
+    <div className='bg-gray-600 text-gray-50'>
       <p>Install aplikasi ini ke perangkat Anda!</p>
       <button onClick={install}>Install</button>
     </div>
