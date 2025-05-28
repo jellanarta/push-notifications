@@ -28,7 +28,7 @@ export function InstallPrompt() {
   return (
     <div className='bg-gray-600 text-gray-50'>
       <p>Install aplikasi ini ke perangkat Anda!</p>
-      <button onClick={install}>Install</button>
+      <button className='bg-blue text-white p-3' onClick={install}>Install Di Sini</button>
     </div>
   )
 }
